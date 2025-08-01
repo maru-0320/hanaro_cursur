@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정책자금, 누군가는 받는다는데… 왜 나는 늘 놓칠까?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #2c3e50;
+        }
+
+        .section-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .problem-section {
+            background: #f8f9fa;
+        }
+
+        .problem-text {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .stats {
+            background: #e74c3c;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            font-weight: 600;
+        }
+
+        /* Feature Cards */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .feature-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: #f8f9fa;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 4px solid #3498db;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .testimonial-role {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        /* Email Form */
+        .email-form {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e8ed;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .submit-button {
+            width: 100%;
+            background: #3498db;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: #2980b9;
+        }
+
+        .trust-text {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-top: 30px;
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .stagger-delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        .stagger-delay-3 {
+            transition-delay: 0.3s;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .email-form {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section (A - Attention) -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="fade-in">정책자금, 누군가는 받는다는데… 왜 나는 늘 놓칠까?</h1>
+            <p class="fade-in stagger-delay-1">유사 조건 수혜 사례와 실제 후기 기반 커뮤니티에서<br>지금, 당신의 정책자금 기회를 놓치지 마세요.</p>
+            <a href="#signup" class="cta-button fade-in stagger-delay-2">🔔 알림 신청하고 내 조건 맞는 사례 먼저 받아보기</a>
+        </div>
+    </section>
+
+    <!-- Problem Section (I - Interest) -->
+    <section class="section problem-section">
+        <div class="container">
+            <h2 class="section-title fade-in">정보는 넘치는데, 정작 '나한테 맞는 정책'은 모르겠다?</h2>
+            <div class="section-content">
+                <p class="problem-text fade-in stagger-delay-1">
+                    정부24, 기업마당, 지자체 홈페이지… 수많은 곳을 뒤져도<br>
+                    신청할 수 있는 정책인지 아닌지조차 헷갈립니다.
+                </p>
+                <p class="problem-text fade-in stagger-delay-2">
+                    결국 주변 사람 이야기나 유튜브 후기만 검색하다<br>
+                    신청 타이밍을 놓치고 맙니다.
+                </p>
+                <p class="problem-text fade-in stagger-delay-3">
+                    그 사이, 누군가는 조용히 정책자금을 받고 있습니다.
+                </p>
+                <div class="stats fade-in-up">
+                    📊 80% 이상이 정책자금 정보 탐색에서 '좌절'을 경험합니다.<br>
+                    그 중 절반 이상은 '정보의 파편성'이 가장 큰 이유였습니다.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section (D - Desire) -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">당신과 비슷한 사람들이 실제로 받았던 정책자금,<br>지금 바로 카드로 확인해보세요.</h2>
+            <div class="features">
+                <div class="feature-card fade-in-left stagger-delay-1">
+                    <div class="feature-icon">📌</div>
+                    <h3 class="feature-title">01. 조건 기반 추천</h3>
+                    <p class="feature-description">
+                        업종/업력/지역을 입력하면,<br>
+                        "나와 비슷한 조건의 사람들"이 받은 정책을 보여드립니다.
+                    </p>
+                </div>
+                <div class="feature-card fade-in stagger-delay-2">
+                    <div class="feature-icon">🧾</div>
+                    <h3 class="feature-title">02. 유사 수혜 사례 카드</h3>
+                    <p class="feature-description">
+                        실제 신청자의 간단한 후기와 조건, 팁까지 요약된 카드로 확인 →<br>
+                        신청 여부 결정까지 단 2분
+                    </p>
+                </div>
+                <div class="feature-card fade-in-right stagger-delay-3">
+                    <div class="feature-icon">💬</div>
+                    <h3 class="feature-title">03. 커뮤니티 질문 & 후기 공유</h3>
+                    <p class="feature-description">
+                        헷갈릴 땐 직접 물어보고,<br>
+                        신청 후엔 본인의 경험을 공유하는 서로 돕는 구조
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section (D - 강화된 Desire) -->
+    <section class="section testimonials">
+        <div class="container">
+            <h2 class="section-title fade-in">"이걸 보고 2시간 만에 정책자금 신청했어요"</h2>
+            <div class="section-content">
+                <div class="testimonial-card fade-in-left stagger-delay-1">
+                    <p class="testimonial-text">
+                        "조건도 애매해서 헷갈렸는데, 저랑 비슷한 케이스를 보자마자 바로 정리했어요."
+                    </p>
+                    <div class="testimonial-author">👩‍🦰 예비 창업자, 30대 여성 / 소매업 준비 중</div>
+                </div>
+                <div class="testimonial-card fade-in-right stagger-delay-2">
+                    <p class="testimonial-text">
+                        "업종/지역 조건 맞춰 필터링 하니까 더이상 헤맬 필요가 없었어요.<br>
+                        덕분에 올해 첫 정책자금 신청 성공했습니다."
+                    </p>
+                    <div class="testimonial-author">👨‍🔧 자영업 6년 차 / 카페 운영</div>
+                </div>
+                <p class="stats fade-in-up">
+                    사례를 본 사용자 중 63%가 "신청을 시도해볼 의향이 생겼다"고 답했습니다.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section (A - Action) -->
+    <section class="section" id="signup">
+        <div class="container">
+            <h2 class="section-title fade-in">내 조건에 맞는 정책자금 사례, 놓치지 마세요.</h2>
+            <div class="section-content">
+                <p class="problem-text fade-in stagger-delay-1">
+                    매달 50개 넘는 정책자금이 새로 열립니다.<br>
+                    알림 신청만 해도, 당신에게 맞는 사례가 먼저 도착합니다.
+                </p>
+                
+                <div class="email-form fade-in-up stagger-delay-2">
+                    <form action="https://formspree.io/f/xzzvvqgy" method="POST">
+                        <div class="form-group">
+                            <input type="email" name="email" class="form-input" placeholder="이메일 주소를 입력해주세요" required>
+                        </div>
+                        <button type="submit" class="submit-button">📩 내 조건 맞춤 사례 먼저 받아보기</button>
+                    </form>
+                </div>
+
+                <div class="trust-text fade-in stagger-delay-3">
+                    💡 본 서비스는 실제 정책자금 수혜자의 후기와 공공 데이터를 기반으로 운영됩니다.<br>
+                    사용자의 개인정보는 저장되지 않으며, 언제든지 알림 해제할 수 있습니다.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with animation classes
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .fade-in-up');
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html> 
